@@ -2,9 +2,65 @@
 
 class Conta
 {
-    public string $cpfTitular;
-    public string $nomeTitular;
-    public float $saldo;
+    private string $cpfTitular;
+    private string $nomeTitular;
+    private float $saldo;
+
+    public function __construct (string $nome, string $cpf, float $saldo) {
+        $this->nomeTitular = $nome;
+        $this->cpfTitular = $cpf;
+        $this->saldo = $saldo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCpfTitular(): string
+    {
+        return $this->cpfTitular;
+    }
+
+    /**
+     * @param string $cpfTitular
+     */
+    public function setCpfTitular(string $cpfTitular): void
+    {
+        $this->cpfTitular = $cpfTitular;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomeTitular(): string
+    {
+        return $this->nomeTitular;
+    }
+
+    /**
+     * @param string $nomeTitular
+     */
+    public function setNomeTitular(string $nomeTitular): void
+    {
+        $this->nomeTitular = $nomeTitular;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSaldo(): float
+    {
+        return $this->saldo;
+    }
+
+    /**
+     * @param float $saldo
+     */
+    public function setSaldo(float $saldo): void
+    {
+        $this->saldo = $saldo;
+    }
+
+
 
     public function sacar($valor)
     {
@@ -30,5 +86,7 @@ class Conta
             echo "Conta do {$this->nomeTitular}: valor R$ {$valor} Transferido para {$conta->nomeTitular}" . PHP_EOL;
         }
     }
+
+
 
 }
