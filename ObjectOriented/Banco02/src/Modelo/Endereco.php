@@ -2,12 +2,22 @@
 
 namespace Alura\Banco\Modelo;
 
-class Endereco
+/**
+ * Class Endereco
+ * @package Alura\Banco\Modelo
+ * @property-read string $cidade
+ * @property-read string $bairro
+ * @property-read string $rua
+ * @property-read string $numero
+ */
+final class Endereco
 {
-    private string $cidade;
-    private string $bairro;
-    private string $rua;
-    private string $numero;
+    use AcessoPropriedades;
+
+    private $cidade;
+    private $bairro;
+    private $rua;
+    private $numero;
 
     public function __construct(string $cidade, string $bairro, string $rua, string $numero)
     {
@@ -17,47 +27,28 @@ class Endereco
         $this->numero = $numero;
     }
 
-    public function getCidade(): string
+    public function recuperaCidade(): string
     {
         return $this->cidade;
     }
 
-
-    public function setCidade(string $cidade): void
-    {
-        $this->cidade = $cidade;
-    }
-
-    public function getBairro(): string
+    public function recuperaBairro(): string
     {
         return $this->bairro;
     }
 
-    public function setBairro(string $bairro): void
-    {
-        $this->bairro = $bairro;
-    }
-
-    public function getRua(): string
+    public function recuperaRua(): string
     {
         return $this->rua;
     }
 
-    public function setRua(string $rua): void
-    {
-        $this->rua = $rua;
-    }
-
-    public function getNumero(): string
+    public function recuperaNumero(): string
     {
         return $this->numero;
     }
 
-    public function setNumero(string $numero): void
+    public function __toString(): string
     {
-        $this->numero = $numero;
+        return "{$this->rua}, {$this->numero}, {$this->bairro}, {$this->cidade}";
     }
-
-
-
 }

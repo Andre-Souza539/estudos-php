@@ -1,52 +1,36 @@
 <?php
 
 namespace Alura\Banco\Modelo;
-class Pessoa
-{
-    private string $nome;
-    private string $cpf;
 
-    /**
-     * @param string $nome
-     * @param string $cpf
-     */
-    public function __construct(string $nome, string $cpf)
+abstract class Pessoa
+{
+    use AcessoPropriedades;
+
+    protected $nome;
+    private $cpf;
+
+    public function __construct(string $nome, CPF $cpf)
     {
+        $this->validaNome($nome);
         $this->nome = $nome;
         $this->cpf = $cpf;
     }
 
-    /**
-     * @return string
-     */
-    public function getNome(): string
+    public function recuperaNome(): string
     {
         return $this->nome;
     }
 
-    /**
-     * @param string $nome
-     */
-    public function setNome(string $nome): void
+    public function recuperaCpf(): string
     {
-        $this->nome = $nome;
+        return $this->cpf->recuperaNumero();
     }
 
-    /**
-     * @return string
-     */
-    public function getCpf(): string
+    final protected function validaNome(string $nomeTitular)
     {
-        return $this->cpf;
+        if (strlen($nomeTitular) < 5) {
+            echo "Nome precisa ter pelo menos 5 caracteres";
+            exit();
+        }
     }
-
-    /**
-     * @param string $cpf
-     */
-    public function setCpf(string $cpf): void
-    {
-        $this->cpf = $cpf;
-    }
-
-
 }
